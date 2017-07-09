@@ -75,4 +75,8 @@ public class FlowingGradientClass {
         return this;
     }
 
+    public void stop() {
+        frameAnimation.stop();
+    }
+
 }
