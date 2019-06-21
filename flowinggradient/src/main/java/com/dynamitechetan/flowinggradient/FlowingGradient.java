@@ -62,19 +62,16 @@ public class FlowingGradient extends View {
         return this;
     }
 
-    public FlowingGradient onLinearLayout(LinearLayout ll) {
+	public void setLinearLayout(LinearLayout ll) {
         this.ll = ll;
-        return this;
     }
 
-    public FlowingGradient onImageView(ImageView im) {
+	public void setImageView(ImageView im) {
         this.im = im;
-        return this;
     }
 
-    public FlowingGradient onRelativeLayout(RelativeLayout rl) {
+	public void setRelativeLayout(RelativeLayout rl) {
         this.rl = rl;
-        return this;
     }
 
     public void start() {
