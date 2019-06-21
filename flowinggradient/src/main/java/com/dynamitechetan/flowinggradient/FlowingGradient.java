@@ -14,10 +14,20 @@ import android.widget.RelativeLayout;
  */
 public class FlowingGradient extends View {
 
-    int duration;
+	int duration = 4000;
     int draw;
+	RelativeLayout rl;
+	LinearLayout ll;
+	ImageView im;
+	int alphaint;
+	AnimationDrawable frameAnimation;
+
     public FlowingGradient(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+		TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.gradient, 0, 0);
+
+		draw = a.getResourceId(R.styleable.gradient_transition_drawable, R.drawable.translate);
+		duration = a.getInt(R.styleable.gradient_transition_duration, 75);
         init();
     }
 
@@ -32,6 +42,7 @@ public class FlowingGradient extends View {
 
     public FlowingGradient(Context context) {
         super(context);
+
         init();
     }
 
@@ -48,16 +59,10 @@ public class FlowingGradient extends View {
     }
 
 
-    int Duration = 4000;
-    RelativeLayout rl;
-    LinearLayout ll;
-    ImageView im;
-    int alphaint;
-    int d;
-    AnimationDrawable frameAnimation;
+
 
     public FlowingGradient setTransitionDuration(int time) {
-        this.Duration = time;
+		this.duration = time;
 
         return this;
     }
@@ -77,11 +82,11 @@ public class FlowingGradient extends View {
     public void start() {
 
         if (ll != null) {
-            ll.setBackgroundResource(d);
+			ll.setBackgroundResource(draw);
         } else if (rl != null) {
-            rl.setBackgroundResource(d);
+			rl.setBackgroundResource(draw);
         } else if (im != null) {
-            im.setBackgroundResource(d);
+			im.setBackgroundResource(draw);
         }
         if (ll != null) {
             frameAnimation = (AnimationDrawable) ll.getBackground();
@@ -90,14 +95,14 @@ public class FlowingGradient extends View {
         } else if (im != null) {
             frameAnimation = (AnimationDrawable) im.getBackground();
         }
-        frameAnimation.setEnterFadeDuration(Duration);
-        frameAnimation.setExitFadeDuration(Duration);
+		frameAnimation.setEnterFadeDuration(duration);
+		frameAnimation.setExitFadeDuration(duration);
         frameAnimation.start();
 
     }
 
-    public void setBackgroundResource(int d) {
-        this.d = d;
+	public void setBackgroundResource(int draw) {
+		this.draw = draw;
 
     }
 
